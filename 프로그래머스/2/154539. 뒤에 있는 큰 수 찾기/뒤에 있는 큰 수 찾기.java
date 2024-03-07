@@ -1,21 +1,23 @@
-import java.util.Arrays;
 import java.util.Stack;
 
 class Solution {
     public int[] solution(int[] numbers) {
-        Stack<Integer> stack = new Stack<>();
-
         int[] answer = new int[numbers.length];
 
-        Arrays.fill(answer, -1);
-
-        for(int i = 0; i < numbers.length; i++) {
-
-            while(!stack.isEmpty() && numbers[stack.peek()] < numbers[i]) {
-                answer[stack.pop()] = numbers[i];
+        Stack<Integer> stack = new Stack<Integer>();
+        for (int i=numbers.length - 1; i>=0; i--) {
+            if (stack.size() == 0) {
+                answer[i] = -1;
+                stack.push(numbers[i]);
+            } else {
+                if (stack.peek() <= numbers[i]) {
+                    stack.pop();
+                    i++;
+                } else {
+                    answer[i] = stack.peek();
+                    stack.push(numbers[i]);
+                }
             }
-
-            stack.push(i);
         }
 
         return answer;
