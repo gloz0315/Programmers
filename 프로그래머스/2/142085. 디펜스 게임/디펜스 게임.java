@@ -15,8 +15,7 @@ class Solution {
             }
             
             int number = enemy[i];
-            
-            // 여기서 pr안의 작은 값을 바꿔버림
+
             if(pr.peek() < number) {
                 number = pr.poll();
                 pr.add(enemy[i]);
