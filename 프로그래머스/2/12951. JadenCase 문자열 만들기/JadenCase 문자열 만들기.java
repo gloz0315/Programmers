@@ -1,28 +1,22 @@
-import java.util.*;
-
 class Solution {
     public String solution(String s) {
-        String answer = "";
+        char[] list = s.toCharArray();
+        int index = 0;
         
-        String[] change = s.split(" ");
-        
-        for(int i = 0; i < change.length; i++) {
-            String current = change[i];
-            
-            if(change[i].length() == 0) {
-                answer += " ";
+        for(int i = 0; i < list.length; i++) {
+            if(list[i] == ' ') {
+                index = 0;
                 continue;
             }
             
-            answer += current.substring(0,1).toUpperCase();
-            answer += current.substring(1, current.length()).toLowerCase();
-            answer += " ";
+            if(index == 0) {
+                list[i] = Character.toUpperCase(list[i]);
+                index += 1;
+            } else {
+                list[i] = Character.toLowerCase(list[i]);
+            }
         }
         
-        if(s.substring(s.length()-1, s.length()).equals(" ")){
-            return answer;
-        }
-        
-        return answer.substring(0, answer.length()-1);
+        return String.valueOf(list);
     }
 }
